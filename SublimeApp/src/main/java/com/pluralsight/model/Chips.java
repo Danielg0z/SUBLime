@@ -15,5 +15,8 @@ public class Chips {
         return flavor;
     }
 
-    @
+    @Override
+    public String toString() {
+        return flavor.toString();
+    }    
 }
