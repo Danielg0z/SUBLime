@@ -26,7 +26,7 @@ public class Sandwich {
         this.isToasted = toasted;
     }
 
-    
+
     //Methods for indecisive or picky customers
     //Accounts for a customers desire to swap, add, and/or remove meat, cheese, toppings, and/or sauces
     public void changeMeat(MeatType from, MeatType to){
