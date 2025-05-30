@@ -7,9 +7,9 @@ public class OtherProducts {
     public enum drinkSize {
 
         //All Enums should be uppercase
-        SMALL("Small $", 2.00),
-        MEDIUM("Medium $", 2.50),
-        LARGE("Large $", 3.00);
+        SMALL("Small ", 2.00),
+        MEDIUM("Medium ", 2.50),
+        LARGE("Large ", 3.00);
 
 
         private final String label;

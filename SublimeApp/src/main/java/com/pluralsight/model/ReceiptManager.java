@@ -4,6 +4,7 @@ package com.pluralsight.model;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -11,23 +12,26 @@ import java.util.function.Predicate;
 public class ReceiptManager {
 
     public void saveReceipt(Order order) {
-        //Builds the name of the file, ex - receipt4_Eren_Yeager.txt
-        String fileName = "receipt" + order.getOrderID() + "_" + order.getCustomerName().replaceAll("\\s+", "_") + ".txt";
-
         //This makes a folder where we will save the receipt
-        String directory = "src/main/resources/receipts/";
+        String directory = "src/main/java/resources/receipts/";
+        new File(directory).mkdirs();
+
+        String fileName = LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + ".txt";
 
         // this is folder will save the receipt
-        new File(directory).mkdirs();// this makes the folder if it doesn't already exist
+        File file = new File(directory + fileName);
 
         //opens the file and to write into it
-        try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter(directory + fileName))) {
+        try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter(file))) {
             //writes an order to a file using order's toString
             bufWriter.write(order.toString());
-            System.out.println(" Receipt saved to: " + directory + fileName);
+            System.out.println(" Receipt saved to: " + file.getAbsolutePath());
         } catch (IOException e) {
             System.out.println("Error writing receipt: " + e.getMessage());
         }
+
+
     }
 
 
@@ -94,7 +98,6 @@ public class ReceiptManager {
         return findReceiptByLineMatch(line -> line.contains("Order #: ")
                 && line.contains(String.valueOf(id)));
     }
-
 
 }
 

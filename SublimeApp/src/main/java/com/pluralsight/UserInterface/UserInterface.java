@@ -15,29 +15,32 @@ public class UserInterface {
         boolean menuRunning = true;
 
         while (menuRunning){
-            System.out.println("       (::::::::::::::::::::::)");
-            System.out.println("      ^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-            System.out.println("      (🥪SUBLime🍈 Sandwich Shop!)");
-            System.out.println("      ############################");
-            System.out.println("       (::::::::::::::::::::::)");
+            System.out.println("   (::::::::::::::::::::::)");
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            System.out.println("  (🥪SUBLime🍈 Sandwich Shop!)");
+            System.out.println("###############################");
+            System.out.println("   (::::::::::::::::::::::)");
 
+            System.out.println("-----------------------------");
             System.out.println("1) - Start New Order");
             System.out.println("0) - Exit");
             System.out.print("Choose an option: ");
+            int option = scanner.hasNextInt() ? scanner.nextInt() : -1; // stores option
 
-            int option = scanner.nextInt(); // stores option
 
             switch (option){
                 case 1:
                     //start a New order
                     order =  new Order();
+                    orderMenuHandler(scanner, order);
                     break;
                 case 0:
                     //exit
                     System.out.println("Goodbye, Have a SUBLime Day!");
+                    menuRunning = false;
+                    break;
                 default:
                     System.out.println("Invalid option. Please try again");
-
             }
 
         }
@@ -78,7 +81,7 @@ public class UserInterface {
         while(true){
             //and get the all the values of the bread types(ex: RYE)
             for (int i = 0; i < MeatType.values().length; i++){
-                System.out.println((i + 1) + ")" + MeatType.values()[i]);
+                System.out.println((i + 1) + ") " + MeatType.values()[i]);
             }
             int meatPick = scanner.nextInt();
             if(meatPick == 0){
@@ -91,7 +94,7 @@ public class UserInterface {
         System.out.println("Select cheeses (type 0 to stop):  ");
         while(true){
             for (int i = 0; i < CheeseType.values().length; i++){
-                System.out.println((i + 1) + ")" + CheeseType.values()[i]);
+                System.out.println((i + 1) + ") " + CheeseType.values()[i]);
             }
             int cheesePick = scanner.nextInt();
             if(cheesePick == 0){
@@ -102,10 +105,10 @@ public class UserInterface {
 
 
         // 4. Toppings
-        System.out.println("Select your toppings:");
+        System.out.println("Select your toppings(type 0 to stop):");
         while(true){
             for (int i = 0; i < RegToppings.values().length; i++){
-                System.out.println((i + 1) + ")" + RegToppings.values()[i]);
+                System.out.println((i + 1) + ") " + RegToppings.values()[i]);
             }
             int toppingPick = scanner.nextInt();
             if(toppingPick == 0){
@@ -115,10 +118,10 @@ public class UserInterface {
         }
 
         // 5. Sauces
-        System.out.println("Select your Sauces:");
+        System.out.println("Select your Sauces(type 0 to stop):");
         while(true){
             for (int i = 0; i < SauceType.values().length; i++){
-                System.out.println((i + 1) + ")" + SauceType.values()[i]);
+                System.out.println((i + 1) + ") " + SauceType.values()[i]);
             }
             int saucePick = scanner.nextInt();
             if(saucePick == 0){
@@ -142,11 +145,17 @@ public class UserInterface {
         System.out.println("Select a Drink size: ");
         OtherProducts.drinkSize[] sizes = OtherProducts.drinkSize.values();
         for(int i = 0; i < sizes.length; i++) {
-            System.out.println((i + 1) + ")" + sizes[i].getLabel() + " - $" + sizes[i].getPrice());
+            System.out.printf("%d) %s- $%.2f%n", (i + 1), sizes[i].getLabel(), sizes[i].getPrice());
         }
 
         int drinkPick = scanner.nextInt();
-        //Map ot Enum
+        scanner.nextLine(); // eats newline
+
+        if (drinkPick < 1 || drinkPick > sizes.length){
+            System.out.println("Invalid drink choice");
+            return;
+        }
+
         OtherProducts.drinkSize selectedSize = sizes[drinkPick - 1];
 
         //4. Create and Add drink to order
@@ -161,7 +170,7 @@ public class UserInterface {
         System.out.println("Select a Chip: ");
         OtherProducts.chipType[] flavors = OtherProducts.chipType.values();
         for(int i = 0; i < flavors.length; i++) {
-            System.out.println((i + 1) + ")" + flavors[i]);
+            System.out.println((i + 1) + ") " + flavors[i]);
         }
 
         int chipPick = scanner.nextInt();
@@ -196,7 +205,7 @@ public class UserInterface {
 
             rm.saveReceipt(order);
 
-            System.out.println("Thank you" + name + "| has been placed!");
+            System.out.println("Thank you " + name + "! Your order has been placed!");
         } else{
             System.out.println("Order Cancelled");
         }
@@ -211,7 +220,7 @@ public class UserInterface {
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips");
             System.out.println("4) Checkout");
-            System.out.println("5) Cancel Order");
+            System.out.println("0) Cancel Order");
             System.out.print("Choose an option: ");
 
             int subOption = scanner.nextInt();
@@ -220,22 +229,23 @@ public class UserInterface {
             switch (subOption) {
                 case 1:
                     addSandwich(order, scanner);
+                    break;
                 case 2:
                     addDrink(order, scanner);
+                    break;
                 case 3:
-                    addDrink(order, scanner);
-                case 4:
                     addChip(order, scanner);
-                case 5:
+                    break;
+                case 4:
+                    checkout(order, scanner);
+                    ordering = false;
+                    break;
+                case 0:
                     System.out.println("Order cancelled");
                     ordering = false;
                 default:
                     System.out.println("Invalid option. Please try again.");
-
             }
         }
     }
-
-
-
 }

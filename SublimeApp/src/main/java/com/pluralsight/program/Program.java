@@ -1,4 +1,4 @@
-package com.pluralsight.Program;
+package com.pluralsight.program;
 
 import com.pluralsight.UserInterface.UserInterface;
 

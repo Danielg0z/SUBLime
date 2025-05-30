@@ -1,0 +1,21 @@
+     🥪SUBLime🍈 Sandwich Shop!
+    828 Bay Harbor Lane
+    Dallas, TX 75243
+    (123) 456-7890
+------------------------------
+Order #: 1 | Name: Daniel O
+Order Time - 2025-05-30T05:40:29.282383
+------------------------------
+ITEM                   QTY    PRICE
+Sandwich                 1     1.75
+------------------------------
+SUBTOTAL                    1.75
+SALES TAX                   0.12
+TOTAL                       1.87
+
+CASH     LTCA TENDERED $6.00
+CHANGE DUE              $4.13
+
+******** UNDER YUU OWNERSHIP ********
+
+******** OPEN 7 DAYS 10AM - 10PM ********

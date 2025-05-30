@@ -1,5 +1,6 @@
 package com.pluralsight.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,12 @@ public class Sandwich {
     private List<RegToppings> toppings;
     private List<SauceType> sauces;
     private List<SideTypes> sides;
+
+    public Sandwich() {
+        this.toppings = new ArrayList<>();
+        this.sauces = new ArrayList<>();
+        this.sides = new ArrayList<>();
+    }
 
     public void setSize(SandwichSize size) {
         this.size = size;
@@ -133,6 +140,9 @@ public class Sandwich {
     //Calculate the total price
     public double calculatePrice(){
         double total = 0;
+
+        //Base sandwich price
+        total += size.getBasePrice();
 
         for(Map.Entry<MeatType, Integer> entry : meatMap.entrySet()){
             MeatType meat = entry.getKey();
