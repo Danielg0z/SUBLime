@@ -15,7 +15,33 @@ public class Sandwich {
     private List<SauceType> sauces;
     private List<SideTypes> sides;
 
-    // /*
+    public void setSize(SandwichSize size) {
+        this.size = size;
+    }
+
+    public void setBread(BreadType bread) {
+        this.bread = bread;
+    }
+
+    public void setMeatMap(Map<MeatType, Integer> meatMap) {
+        this.meatMap = meatMap;
+    }
+
+    public void setCheeseMap(Map<CheeseType, Integer> cheeseMap) {
+        this.cheeseMap = cheeseMap;
+    }
+
+    public void setToppings(List<RegToppings> toppings) {
+        this.toppings = toppings;
+    }
+
+    public void setSauces(List<SauceType> sauces) {
+        this.sauces = sauces;
+    }
+
+    public void setSides(List<SideTypes> sides) {
+        this.sides = sides;
+    }
 
     //getter and setter for Toasted
     public boolean isToasted() {

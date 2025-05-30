@@ -34,6 +34,10 @@ public class Order {
         return this.customerName;
     }
 
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     //Methods for adding Sandwiches, Chips and drinks to an order
     public void addSandwich(Sandwich sandwich) {
         sandwiches.add(sandwich);

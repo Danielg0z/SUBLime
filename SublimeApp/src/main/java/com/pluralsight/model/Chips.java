@@ -2,9 +2,11 @@ package com.pluralsight.model;
 
 public class Chips {
     OtherProducts.chipType flavor;
+    private double price;
 
     public Chips(OtherProducts.chipType flavor) {
         this.flavor = flavor;
+        this.price = OtherProducts.CHIP_PRICE;
     }
 
     public double getPrice() {
@@ -12,7 +14,7 @@ public class Chips {
     }
 
     public OtherProducts.chipType getFlavor (){
-        return flavor;
+        return this.flavor;
     }
 
     @Override

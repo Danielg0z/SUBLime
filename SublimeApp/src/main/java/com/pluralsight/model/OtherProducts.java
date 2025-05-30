@@ -2,7 +2,7 @@ package com.pluralsight.model;
 
 public class OtherProducts {
     private drinkSize size;
-    private static final double CHIP_PRICE = 1.50;// chips are a final cause they only have one value
+    public static final double CHIP_PRICE = 1.50;// chips are a final cause they only have one value
 
     public enum drinkSize {
 
@@ -47,7 +47,6 @@ public class OtherProducts {
         public String toString() {
             return name().toLowerCase().replace("_", " ");
         }
-
 
     }
 }
